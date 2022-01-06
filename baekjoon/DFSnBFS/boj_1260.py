@@ -1,47 +1,24 @@
+"""
+참고한 블로그 포스팅
+https://goplanit.site/42.%20Algorithm(1260_py)/
+"""
+
 from collections import deque
 
 # 순서대로 node 개수, edge 개수, 시작 node 번호
 node,edge,start = map(int, input().split())
 
-"""
-< 각 edge에 연결된 노드 정보 → 인접 리스트 >
-1. 각 edge에 연결된 노드 정보(temp_graph) 뿐만 아니라 set 타입에 node 종류도 저장(nodes)하기
-2. temp_graph에서 nodes의 각 elem이 있는 원소에 대해 그의 다른 node를 graph에 추가한다.
-"""
+# 인접리스트 (1번부터 시작)
+graph = [[] for _ in range(node+1)]
 
-temp_graph, nodes = list(), set()
-
-for _ in range(edge):
-    node1,node2 = map(int,input().split())
-    temp_graph.append((node1,node2))
-    nodes.add(node1)
-    nodes.add(node2)
-
-graph = [[]]
-
-for num in nodes:
-    temp_adjacent = []
-    for elem in temp_graph:
-        if num in elem:
-            if elem[0] != num:
-                temp_adjacent.append(elem[0])
-            elif elem[1] != num:
-                temp_adjacent.append(elem[1])
-    graph.append(temp_adjacent)
-
-"""
-여기서부터 그래프 순회 시작!
-"""
-# visited = [False] * len(nodes)
-
-def dfs(graph,v,visited):
+def dfs(v):
     visited[v] = True
     print(v,end=" ")
     for i in graph[v]:
         if not visited[i]:
-            dfs(graph,i,visited)
+            dfs(i)
 
-def bfs(graph,start,visited):
+def bfs(start):
     deq = deque([start])
     visited[start] = True
 
@@ -53,8 +30,20 @@ def bfs(graph,start,visited):
                 deq.append(i)
                 visited[i] = True
 
-visited = [False] * (len(nodes)+1)
-dfs(graph,start,visited)
-# print("\n")
-visited = [False] * (len(nodes)+1)
-bfs(graph,start,visited)
+
+# 인접리스트 생성
+for _ in range(edge):
+    node1, node2 = map(int, input().split())
+    graph[node1].append(node2)
+    graph[node2].append(node1)
+
+# 인접 리스트의 각 원소를 정렬하기
+for elem in range(1, node+1):
+    graph[elem].sort()
+
+
+visited = [False] * (node+1)
+dfs(start)
+print()
+visited = [False] * (node+1)
+bfs(start)
