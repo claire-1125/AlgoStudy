@@ -11,6 +11,9 @@ def bfs(r,c):
         graph[r][c] = 1
     deq = deque([(r,c)])
 
+    # 왜 자꾸 여기로 오지..????
+    print("initial state:", deq)
+
     # 순서대로 상,하,좌,우
     adjacent_r = [-1,+1,0,0]
     adjacent_c = [0,0,-1,+1]

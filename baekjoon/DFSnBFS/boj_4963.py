@@ -6,21 +6,28 @@ def bfs(r,c):
         pos[r][c] = 0
     queue = deque([(r,c)])
 
+    # 왜 자꾸 여기로 오지..????
+    print("initial state:",queue)
+
     # 상,하,좌,우,북동,북서,남동,남서
     adjacent_r = [-1,+1,0,0,-1,-1,+1,+1]
     adjacent_c = [0,0,-1,+1,+1,-1,+1,-1]
     
     while queue:
         v = queue.popleft()
+        # print("now:",v)
         for i in range(8):
             r, c = v[0] + adjacent_r[i], v[1] + adjacent_c[i]
             # 범위 내에 존재하는지 확인
-            if not ((r in range(w)) and (c in range(h))):
+            if not ((r in range(h)) and (c in range(w))):
                 return False
+
             # 주위에 대해 체크
             if pos[r][c] == 1:
                 queue.append((r,c))
                 pos[r][c] = 0
+
+        # print("after adding adjacent nodes:",queue)
 
     return True
 
