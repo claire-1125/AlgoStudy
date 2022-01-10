@@ -1,35 +1,29 @@
-from collections import deque
+import sys
 
-def bfs(r,c):
-    # 초기 설정
+sys.setrecursionlimit(99999)
+
+def dfs(r,c):
+    # 범위 안에 존재하는지 확인
+    if not ((r in range(h)) and (c in range(w))):
+        return False
+
+    # 현재 노드 방문 처리
     if pos[r][c] == 1:
         pos[r][c] = 0
-    queue = deque([(r,c)])
 
-    # 왜 자꾸 여기로 오지..????
-    print("initial state:",queue)
+        # 근접한 노드 재귀 방문
+        dfs(r-1, c)  # 상
+        dfs(r+1, c)  # 하
+        dfs(r, c-1)  # 좌
+        dfs(r, c+1)  # 우
+        dfs(r-1, c+1)  # 북동
+        dfs(r-1, c-1)  # 북서
+        dfs(r+1, c+1)  # 남동
+        dfs(r+1, c-1)  # 남서
 
-    # 상,하,좌,우,북동,북서,남동,남서
-    adjacent_r = [-1,+1,0,0,-1,-1,+1,+1]
-    adjacent_c = [0,0,-1,+1,+1,-1,+1,-1]
-    
-    while queue:
-        v = queue.popleft()
-        # print("now:",v)
-        for i in range(8):
-            r, c = v[0] + adjacent_r[i], v[1] + adjacent_c[i]
-            # 범위 내에 존재하는지 확인
-            if not ((r in range(h)) and (c in range(w))):
-                return False
-
-            # 주위에 대해 체크
-            if pos[r][c] == 1:
-                queue.append((r,c))
-                pos[r][c] = 0
-
-        # print("after adding adjacent nodes:",queue)
-
-    return True
+        return True
+    else:
+        return False
 
 
 while True:
@@ -42,7 +36,7 @@ while True:
     cnt = 0
     for i in range(h):
         for j in range(w):
-            if bfs(i,j):
+            if dfs(i,j):
                 cnt += 1
 
     print(cnt)
