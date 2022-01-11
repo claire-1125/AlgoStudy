@@ -32,6 +32,7 @@ def bfs(r,c):
 
 n,m = map(int,input().split())
 
+# 길의 정보 + 최소 누적 길이
 pos = [[elem for elem in map(int,input())] for _ in range(n)]
 
 print(bfs(0,0))

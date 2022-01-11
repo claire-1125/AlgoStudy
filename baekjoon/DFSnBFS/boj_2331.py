@@ -20,6 +20,10 @@ a, p = map(int,input().split())
 
 # flag 변수 역할도 하면서 누적 길이를 구하는 배열
 # 나올 수 있는 가장 큰 수가 9^5+9^5+9^5+9^5=236196 이므로
+# visited의 index는 결국 각각의 항
+# visited 배열 : boolean array(x), 누적 길이
 visited = [0] * 250000
+
 cnt = 1
 print(dfs(a,visited,cnt))
+
