@@ -1,5 +1,4 @@
 def BinarySearchIterative(array, searchNum, left, right):
-
     while left <= right:
         middle = (left + right) // 2
 
