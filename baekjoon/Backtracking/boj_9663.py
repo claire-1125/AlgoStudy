@@ -1,37 +1,47 @@
-# https://chanhuiseok.github.io/posts/baek-1/
-# 시간 덜 걸리는 방법?
+"""
+<공부자료>
+https://chanhuiseok.github.io/posts/baek-1/
 
+<global을 쓰면 시간이 지체된다.>
+https://8iggy.tistory.com/155
 
-chessboard = [0] * 15
-count = 0
+<테스트케이스>
+n=4, 정답=2
+n=8, 정답=92
+"""
 
-def promising(row):
-    global chessboard
+import sys
+sys.setrecursionlimit(10000)
 
-    for j in range(row):
+def promising(r, board):
+    for j in range(r):
         # column이 동일 / row 단위의 차이와 column 단위의 차이가 동일
-        if chessboard[row] == chessboard[j] or row - j == abs(chessboard[row] - chessboard[j]):
+        if board[r] == board[j] or r - j == abs(board[r] - board[j]):
             return False
     return True
 
+# 함수를 탈출하는 경우?
+def nqueen(n, chessboard, row):
+    print("row:",row)
 
-def nqueen(n, row):
-    global chessboard
-    global count
-
-    if row == n:  # 마지막 row인 경우
-        count += 1
-
+    if row == n:  # 모든 queen을 배치한 경우
+        print("here:",chessboard)
+        print("=================")
+        # count += 1
     else:
         for i in range(n):
             chessboard[row] = i  # 일단 queen을 놔본다.
 
-            if promising(row):  # 현재 위치가 놓으면 안 되는 자리인지 판단
-                nqueen(n, row + 1)  # 되는 자리이면 진행
+            if promising(row, chessboard):  # 현재 위치가 놓으면 안 되는 자리인지 판단
+                nqueen(n, chessboard, row + 1)  # 되는 자리이면 진행
             else:
                 continue
 
-
-
-nqueen(int(input()), 0)
-print(count)
+n = int(input())
+chessboard = [0] * n
+result = 0
+if nqueen(n, chessboard, 0):
+    result += 1
+# result += nqueen(n, chessboard, 0)
+print("탈출!")
+print(result)
