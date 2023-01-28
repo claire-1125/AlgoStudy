@@ -23,3 +23,14 @@ def solution(money):
     return cnt
 
 print(solution(int(input())))
+
+# 또 다른 풀이
+# n = int(input())
+# 
+# a, a_ = n // 500, n % 500
+# b, b_ = a_ // 100, a_ % 100
+# c, c_ = b_ // 50, b_ % 50
+# d, d_ = c_ // 10, c_ % 10
+#
+# # 최소 동전 개수
+# print(a+b+c+d)
