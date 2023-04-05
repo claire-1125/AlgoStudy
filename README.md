@@ -1,4 +1,4 @@
-# AlgoStudy
+# Algorithm Study
 
 ## 어떠한 레포인가?
 코딩테스트를 준비하면서 풀어본 문제들의 소스코드입니다.
