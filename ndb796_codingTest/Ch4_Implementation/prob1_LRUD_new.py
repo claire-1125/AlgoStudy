@@ -27,6 +27,3 @@ for elem in route:
     row, column = temp_r, temp_c
 
 print(row, column)
-
-
-
