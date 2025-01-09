@@ -9,5 +9,9 @@ day_map = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 day1 = sum(days_list[:m1])+d1  # 월요일
 day2 = sum(days_list[:m2])+d2
 
+day_diff = day2 - day1
+
+day_diff = day_diff - day_map.index(A) + 1
+
 # day2 >= day1은 항상 성립
-print((day2-day1) // (day_map.index(A)) - 1)
+print((day_diff // 7) + 1)
