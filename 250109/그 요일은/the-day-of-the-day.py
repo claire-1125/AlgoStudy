@@ -9,11 +9,12 @@ day_map = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 day1 = sum(days_list[:m1])+d1  # 월요일
 day2 = sum(days_list[:m2])+d2
 
-day_diff = day2 - day1
+day_diff = day2 - day1  # 절대 차이 계산
 
 cnt = 0
 cnt += day_diff // 7  # 일주일(7일)이 온전히 지나간 것만큼 A요일도 껴있었음.
 
+# 맨 마지막 주차(온전히 7일 돌지 않음.)에서 입력받은 요일 포함여부 고려
 if day_diff % 7 >= day_map.index(A):
     cnt += 1
 
