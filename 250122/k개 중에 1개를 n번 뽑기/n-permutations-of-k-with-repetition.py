@@ -1,7 +1,3 @@
-# 1~K에서 하나 추출 행위를 N번 반복
-# 서로 다른 순서쌍의 개수
-# from itertools import permutations, combinations
-
 K, N = map(int, input().split())
 
 # Write your code here!
